@@ -15,24 +15,52 @@
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarNav">
-					<ul class="navbar-nav">
-						<li class="nav-item">
-							<router-link class="nav-link" active-class="active" to="/"
-								>Login</router-link
-							>
-						</li>
+					<ul class="navbar-nav me-auto">
 						<li class="nav-item">
 							<router-link class="nav-link" active-class="active" to="/posts"
 								>Posts</router-link
 							>
 						</li>
 					</ul>
+					<div
+						v-for="({ loginFlag, logoutFlag }, index) in show"
+						:key="index"
+						class="d-flex"
+					>
+						<button
+							v-if="loginFlag"
+							class="btn btn-outline-light"
+							type="button"
+							@click="goLogin"
+						>
+							Login
+						</button>
+						<button
+							v-if="logoutFlag"
+							class="btn btn-outline-light"
+							type="button"
+							@click="goLogout"
+						>
+							LogOut
+						</button>
+					</div>
 				</div>
 			</div>
 		</nav>
 	</header>
 </template>
 
-<script></script>
+<script setup>
+import { useRouter } from 'vue-router';
+import { useShow } from '@/compossable/show';
+import { goLogout } from '@/api/logout';
+
+const { show } = useShow();
+
+const router = useRouter();
+const goLogin = () => {
+	router.push('/');
+};
+</script>
 
 <style scoped></style>

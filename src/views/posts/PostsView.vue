@@ -12,19 +12,14 @@
 			</div>
 		</div>
 		<hr style="visibility: hidden" />
-		<button class="btn btn-outline-primary logout" @click="actLogout">
-			logout
-		</button>
 	</div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
-import cookies from '@/cookies/cookies';
 import router from '@/router/index.js';
 import { getList, checkToken } from '@/api/posts.js';
 import PostItem from '@/components/post/PostItem.vue';
-import { useAlertStore } from '@/stores/alert';
 
 checkToken();
 
@@ -54,15 +49,6 @@ const goDetail = postseq => {
 };
 
 // appAlert option value
-
-// logout 시 accesstoken 삭제
-const actLogout = () => {
-	console.log(cookies.remove('accesstoken'));
-	console.log(cookies.get('accesstoken'));
-
-	checkToken();
-	useAlertStore().vSuccess('로그아웃 되었습니다.');
-};
 </script>
 
 <style scoped>

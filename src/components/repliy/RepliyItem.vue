@@ -1,7 +1,22 @@
 <template>
-	<div></div>
+	<div class="card-body">
+		<h5 class="card-title post-contents">{{ title }}</h5>
+		<p class="text-muted post-contents">{{ createDay }}</p>
+	</div>
 </template>
 
-<script setup></script>
+<script setup>
+defineProps({
+	title: {
+		type: String,
+		required: true,
+	},
+	createDay: {
+		type: [String, Date, Number],
+	},
+});
+</script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+@import '@/assets/main.css';
+</style>

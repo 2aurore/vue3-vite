@@ -6,15 +6,18 @@ import PostDetail from '@/views/posts/PostDetailView.vue';
 import PostCreate from '@/views/posts/PostCreateView.vue';
 import PostEdit from '@/views/posts/PostEditView.vue';
 import NotFound from '@/views/NotFound.vue';
+import { useAlertStore } from '@/stores/alert';
 
 // roter guard
 const routerGuard = to => {
-	// console.log('to: ', to);
+	const alret = useAlertStore();
+
 	// if 조건에 token 삽입
 	console.log('cookise.iskey:::::', cookies.isKey('accesstoken'));
 	if (!cookies.isKey('accesstoken')) {
 		console.log('if : ' + to.meta.unauhorized);
 		router.push('/');
+		alret.vAlert('로그인 후 이용해주세요.');
 	} else {
 		//go to.path
 	}
@@ -34,15 +37,15 @@ const routes = [
 		beforeEnter: routerGuard,
 	},
 	{
-		path: '/posts',
-		name: 'posts',
-		component: PostEdit,
+		path: '/posts/create',
+		name: 'postCreate',
+		component: PostCreate,
 		beforeEnter: routerGuard,
 	},
 	{
-		path: '/posts',
-		name: 'posts',
-		component: PostCreate,
+		path: '/posts/:seq/edit',
+		name: 'postEdit',
+		component: PostEdit,
 		beforeEnter: routerGuard,
 	},
 	{

@@ -32,6 +32,9 @@
 				</div>
 			</div>
 		</div>
+		<div class="card-body">
+			<RepliyItem></RepliyItem>
+		</div>
 	</div>
 </template>
 
@@ -39,6 +42,7 @@
 import { ref, onMounted, reactive } from 'vue';
 import { getPost } from '@/api/posts.js';
 import cookies from '@/cookies/cookies.js';
+import RepliyItem from '@/components/repliy/RepliyItem.vue';
 defineProps({
 	seq: {
 		type: String,

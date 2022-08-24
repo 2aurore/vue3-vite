@@ -20,13 +20,13 @@
 					v-model="loginInfo.password"
 					required
 				/>
-				<div class="d-grid gap-2">
+				<div class="d-grid gap-2 mt-3">
 					<button type="submit" class="btn btn-primary btn-lg">Login</button>
 				</div>
-				<label>
+				<!-- <label>
 					<input type="checkbox" checked="checked" name="remember" /> Remember
 					me
-				</label>
+				</label> -->
 			</div>
 
 			<div class="container" style="background-color: #f1f1f1">

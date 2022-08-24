@@ -2,12 +2,14 @@ import router from '@/router/index.js';
 import cookies from '@/cookies/cookies';
 import axios from 'axios';
 import { useAlertStore } from '@/stores/alert';
+import { useShowStore } from '@/stores/show';
 
 const BASE_URL = 'https://jssampletest.herokuapp.com/api';
 
 export async function postLogin(data) {
 	async function getToken() {
 		const alret = useAlertStore();
+		const show = useShowStore();
 		try {
 			const response = await axios.post(BASE_URL + '/auth/login', data);
 			// console.log(' login success');
@@ -18,6 +20,7 @@ export async function postLogin(data) {
 				console.log(cookies.get('token'));
 				alret.vSuccess('어서오세요.');
 				router.push('/posts');
+				show.vLogin();
 			}
 		} catch (error) {
 			// console.log(error.response.data['password']);

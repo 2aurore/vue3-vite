@@ -1,28 +1,28 @@
 <template>
+	<h2 class="mb-3">게시글 작성</h2>
 	<div class="card">
 		<div class="card-body">
-			<div v-if="show" class="mb-3 row">
-				<h2>{{ postObject.title }}</h2>
+			<div class="mb-3">
+				<input
+					type="text"
+					class="form-control"
+					id="createTitle"
+					placeholder="제목"
+				/>
 			</div>
-
-			<div v-if="show" class="mb-3">
+			<div class="mb-3">
 				<textarea
 					class="form-control"
-					id=""
+					id="exampleFormControlTextarea1"
 					rows="10"
-					v-model="postObject.content"
-					readonly
 				></textarea>
 			</div>
-			<div class="postseq invisible"></div>
-			<div class="row">
-				<div class="col"></div>
-				<div class="col-5"></div>
-				<div class="col" style="text-align: right">
-					<router-link to="/posts">
-						<button class="btn btn-primary">목록</button>
-					</router-link>
-				</div>
+		</div>
+		<div class="postseq invisible"></div>
+		<div class="row">
+			<div class="col mb-3 me-3" style="text-align: right">
+				<button class="btn btn-outline-danger me-3">취소</button>
+				<button class="btn btn-primary">저장</button>
 			</div>
 		</div>
 	</div>
