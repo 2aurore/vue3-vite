@@ -1,73 +1,70 @@
 <template>
-  <JoinModal :show="joinFlag" />
-  <div>
-    <form @submit.prevent="loginSubmit">
-      <div class="container">
-        <label for="userEmail"><b>E-mail</b></label>
-        <input
-          type="text"
-          placeholder="Enter E-mail"
-          name="userEmail"
-          v-model="loginInfo.email"
-          required
-        />
+	<div>
+		<form @submit.prevent="loginSubmit">
+			<div class="container">
+				<label for="userEmail"><b>E-mail</b></label>
+				<input
+					type="text"
+					placeholder="Enter E-mail"
+					name="userEmail"
+					v-model="loginInfo.email"
+					required
+				/>
 
-        <label for="psw"><b>Password</b></label>
-        <input
-          type="password"
-          placeholder="Enter Password"
-          name="psw"
-          v-model="loginInfo.password"
-          required
-        />
-        <div class="d-grid gap-2">
-          <button type="submit" class="btn btn-primary btn-lg">Login</button>
-        </div>
-        <label>
-          <input type="checkbox" checked="checked" name="remember" /> Remember
-          me
-        </label>
-      </div>
+				<label for="psw"><b>Password</b></label>
+				<input
+					type="password"
+					placeholder="Enter Password"
+					name="psw"
+					v-model="loginInfo.password"
+					required
+				/>
+				<div class="d-grid gap-2">
+					<button type="submit" class="btn btn-primary btn-lg">Login</button>
+				</div>
+				<label>
+					<input type="checkbox" checked="checked" name="remember" /> Remember
+					me
+				</label>
+			</div>
 
-      <div class="container" style="background-color: #f1f1f1">
-        <button
-          type="button"
-          class="btn btn-primary joinBtn"
-          :click="showModal"
-        >
-          Join us
-        </button>
-        <span class="psw">Forgot <a href="#" class="psw">password?</a></span>
-      </div>
-    </form>
-  </div>
+			<div class="container" style="background-color: #f1f1f1">
+				<button
+					type="button"
+					class="btn btn-primary joinBtn"
+					:click="showModal"
+				>
+					Join us
+				</button>
+				<span class="psw">Forgot <a href="#" class="psw">password?</a></span>
+			</div>
+		</form>
+	</div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
+import { useAlert } from '@/compossable/alert';
 import { postLogin } from '@/api/login.js';
-// import AppAlert from '@/components/AppAlert.vue';
-import { useAlertStore } from '@/stores/alert';
-import JoinModal from '@/components/JoinModal.vue';
+
+// import JoinModal from '@/components/JoinModal.vue';
 
 const joinFlag = ref(false);
 const showModal = () => (joinFlag.value = true);
 
 const loginInfo = ref({
-  email: '',
-  password: '',
+	email: '',
+	password: '',
 });
 
-const { alerts } = useAlertStore();
-const { vAlert, vSuccess } = useAlertStore();
-
+const { vSuccess } = useAlert();
 const loginSubmit = () => {
-  if (postLogin(loginInfo.value)) {
-    // console.log('login fail::: ' + alertMsg.value);
-  } else {
-    vAlert('어서오세요.');
-    // console.log('success::: ' + alertMsg.value);
-  }
+	if (postLogin(loginInfo.value)) {
+		// console.log('login fail::: ' + alertMsg.value);
+	} else {
+		vSuccess('어서오세요.');
+		// console.log('success::: ' + alertMsg.value);
+	}
 };
 </script>
 
@@ -77,31 +74,31 @@ const loginSubmit = () => {
 /* Full-width inputs */
 input[type='text'],
 input[type='password'] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
 }
 
 /* The "Forgot password" text */
 span.psw {
-  float: right;
-  padding-top: 16px;
+	float: right;
+	padding-top: 16px;
 }
 a.psw {
-  text-decoration: none;
+	text-decoration: none;
 }
 
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 300px) {
-  span.psw {
-    display: block;
-    float: none;
-  }
-  .joinBtn {
-    width: 100%;
-  }
+	span.psw {
+		display: block;
+		float: none;
+	}
+	.joinBtn {
+		width: 100%;
+	}
 }
 </style>
