@@ -1,6 +1,6 @@
 <template>
 	<div class="card">
-		<div class="card-body">
+		<div class="card-body mt-2 mb-2">
 			<div v-if="show" class="mb-3 row">
 				<h2>{{ postObject.title }}</h2>
 				<div class="col">
@@ -23,8 +23,14 @@
 			</div>
 			<div class="postseq invisible">{{ seq }}</div>
 			<div class="row">
-				<div class="col"></div>
-				<div class="col-5"></div>
+				<div v-for="(repliy, index) in postObject.replies" :key="index">
+					<RepliyItem
+						:content="repliy.content"
+						:member="repliy.memberEmail"
+						:createdate="repliy.createDate"
+						:deleted="repliy.deleted"
+					></RepliyItem>
+				</div>
 				<div class="col" style="text-align: right">
 					<router-link to="/posts">
 						<button class="btn btn-primary">목록</button>
@@ -32,17 +38,16 @@
 				</div>
 			</div>
 		</div>
-		<div class="card-body">
-			<RepliyItem></RepliyItem>
-		</div>
+		<div class="card-body"></div>
 	</div>
 </template>
 
 <script setup>
 import { ref, onMounted, reactive } from 'vue';
 import { getPost } from '@/api/posts.js';
-import cookies from '@/cookies/cookies.js';
+// import cookies from '@/cookies/cookies.js';
 import RepliyItem from '@/components/repliy/RepliyItem.vue';
+
 defineProps({
 	seq: {
 		type: String,
@@ -50,7 +55,7 @@ defineProps({
 	},
 });
 
-console.log(!cookies.isKey('accesstoken'));
+// console.log(!cookies.isKey('accesstoken'));
 const postseq = ref();
 const postObject = ref();
 onMounted(() => {
@@ -60,11 +65,10 @@ onMounted(() => {
 		// console.log('!!!!!! post seq : ', postseq.value);
 		getPost(postseq.value).then(result => {
 			postObject.value = reactive(result);
-			console.log('getPost::::::::::::', postObject);
+			console.log('getPost::::::::::::', postObject.value.replies);
 		});
 	};
 	fetchPost();
-	// console.log(postObject);
 });
 
 const show = ref(false);

@@ -1,20 +1,33 @@
 <template>
 	<div class="card-body">
-		<h5 class="card-title post-contents">{{ title }}</h5>
-		<p class="text-muted post-contents">{{ createDay }}</p>
+		<div class="row">
+			<p class="post-contents">내용</p>
+			<p class="text-muted post-contents">작성자</p>
+		</div>
 	</div>
 </template>
 
 <script setup>
 defineProps({
-	title: {
+	content: {
 		type: String,
 		required: true,
 	},
-	createDay: {
-		type: [String, Date, Number],
+	member: {
+		type: String,
+		required: true,
+	},
+	createdate: {
+		type: String,
+		required: true,
+	},
+	deleted: {
+		type: Boolean,
+		required: true,
 	},
 });
+
+console.log(this.repliy);
 </script>
 
 <style scoped>
