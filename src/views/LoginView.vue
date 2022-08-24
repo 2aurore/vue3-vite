@@ -8,6 +8,7 @@
 					placeholder="Enter E-mail"
 					name="userEmail"
 					v-model="loginInfo.email"
+					@focus="onFocus"
 					required
 				/>
 
@@ -44,26 +45,34 @@
 
 <script setup>
 import { ref } from 'vue';
-import { useAlert } from '@/compossable/alert';
 import { postLogin } from '@/api/login.js';
-
-// import JoinModal from '@/components/JoinModal.vue';
-
-const joinFlag = ref(false);
-const showModal = () => (joinFlag.value = true);
+import { useAlertStore } from '@/stores/alert';
 
 const loginInfo = ref({
 	email: '',
 	password: '',
 });
 
-const { vSuccess } = useAlert();
+function emailCheck() {
+	let email = new String(loginInfo.value.email);
+	// console.log(email.search('@'));
+	if (email.search('@') > -1) {
+		return true;
+	}
+	return false;
+}
+
+// input focus 확인할 것!!
+// const focused = ref(false);
+// const onFocus = () => {
+// 	focused.value = true;
+// };
 const loginSubmit = () => {
-	if (postLogin(loginInfo.value)) {
-		// console.log('login fail::: ' + alertMsg.value);
+	if (emailCheck()) {
+		postLogin(loginInfo.value);
 	} else {
-		vSuccess('어서오세요.');
-		// console.log('success::: ' + alertMsg.value);
+		useAlertStore().vAlert('이메일 형식을 확인해주세요.');
+		// onFocus();
 	}
 };
 </script>

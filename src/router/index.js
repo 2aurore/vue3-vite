@@ -1,9 +1,11 @@
+import cookies from '@/cookies/cookies';
+import { createRouter, createWebHistory } from 'vue-router';
 import Login from '@/views/LoginView.vue';
 import Posts from '@/views/posts/PostsView.vue';
 import PostDetail from '@/views/posts/PostDetailView.vue';
+import PostCreate from '@/views/posts/PostCreateView.vue';
+import PostEdit from '@/views/posts/PostEditView.vue';
 import NotFound from '@/views/NotFound.vue';
-import cookies from '@/cookies/cookies';
-import { createRouter, createWebHistory } from 'vue-router';
 
 // roter guard
 const routerGuard = to => {
@@ -32,14 +34,26 @@ const routes = [
 		beforeEnter: routerGuard,
 	},
 	{
+		path: '/posts',
+		name: 'posts',
+		component: PostEdit,
+		beforeEnter: routerGuard,
+	},
+	{
+		path: '/posts',
+		name: 'posts',
+		component: PostCreate,
+		beforeEnter: routerGuard,
+	},
+	{
 		path: '/posts/:seq',
 		name: 'postDetail',
 		props: true,
 		component: PostDetail,
 		children: [
 			// {
-			// 	path: 'edit',
-			// 	component: PostEdit,
+			// 	path: '/',
+			// 	component: Replies,
 			// },
 		],
 	},

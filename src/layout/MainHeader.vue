@@ -2,7 +2,7 @@
 	<header>
 		<nav class="navbar navbar-expand-sm navbar-dark bg-primary">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="#">Navbar</a>
+				<a class="navbar-brand" href="#">TLC</a>
 				<button
 					class="navbar-toggler"
 					type="button"
@@ -17,10 +17,14 @@
 				<div class="collapse navbar-collapse" id="navbarNav">
 					<ul class="navbar-nav">
 						<li class="nav-item">
-							<router-link class="nav-link active" to="/">Login</router-link>
+							<router-link class="nav-link" active-class="active" to="/"
+								>Login</router-link
+							>
 						</li>
 						<li class="nav-item">
-							<router-link class="nav-link" to="/posts">Posts</router-link>
+							<router-link class="nav-link" active-class="active" to="/posts"
+								>Posts</router-link
+							>
 						</li>
 					</ul>
 				</div>

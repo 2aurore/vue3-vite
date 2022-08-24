@@ -7,11 +7,9 @@ import cookies from '@/cookies/cookies';
 const pinia = createPinia();
 const app = createApp(App);
 
+// must create pinia before router
 app.use(pinia);
-console.log(pinia);
-setTimeout(() => {
-	app.use(router, cookies).mount('#app');
-}, 500);
+app.use(router, cookies).mount('#app');
 
 import 'bootstrap/dist/js/bootstrap.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
