@@ -1,0 +1,27 @@
+
+/* Bordered form */
+form {
+  border: 3px solid #f1f1f1;
+}
+
+/* Set a style for all form-control */
+.form-control {
+  resize: none;
+}
+
+/* Set a style for all container */
+.container {
+  padding: 16px;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+  opacity: 0.8;
+}
+
+/* Set style for all post-contents  */
+.post-contents {
+  font-size: small;
+  margin-bottom: 10px;
+  resize: none;
+}
