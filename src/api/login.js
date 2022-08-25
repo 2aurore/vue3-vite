@@ -7,20 +7,22 @@ import { useShowStore } from '@/stores/show';
 const BASE_URL = 'https://jssampletest.herokuapp.com/api';
 
 export async function postLogin(data) {
+	const alret = useAlertStore();
+	const show = useShowStore();
 	async function getToken() {
-		const alret = useAlertStore();
-		const show = useShowStore();
+		console.log('postLogin!!!!!', data);
 		try {
 			const response = await axios.post(BASE_URL + '/auth/login', data);
-			// console.log(' login success');
+			console.log(response.data);
 			if (response.data.status == 200) {
 				const token = 'Bearer ' + response.data.data.accessToken;
 
 				cookies.set('accesstoken', token);
-				console.log(cookies.get('token'));
+				console.log('!!!!!! get access token : ', cookies.get('accesstoken'));
 				alret.vSuccess('어서오세요.');
-				router.push('/posts');
 				show.vLogin();
+				router.push('/posts');
+				// router.go();
 			}
 		} catch (error) {
 			// console.log(error.response.data['password']);

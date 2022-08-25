@@ -1,13 +1,17 @@
 <template>
 	<div class="card-body">
 		<div class="row">
-			<p class="post-contents">내용</p>
-			<p class="text-muted post-contents">작성자</p>
+			<p class="post-contents col-6">{{ content }}</p>
+			<p class="text-muted post-contents col" style="text-align: right">
+				{{ member }}<br />
+				{{ setDate(createdate) }}
+			</p>
 		</div>
 	</div>
 </template>
 
 <script setup>
+import { setDate } from '@/api/posts';
 defineProps({
 	content: {
 		type: String,
@@ -18,7 +22,7 @@ defineProps({
 		required: true,
 	},
 	createdate: {
-		type: String,
+		type: [String, Date, Number],
 		required: true,
 	},
 	deleted: {
@@ -26,8 +30,6 @@ defineProps({
 		required: true,
 	},
 });
-
-console.log(this.repliy);
 </script>
 
 <style scoped>

@@ -23,12 +23,18 @@ const routerGuard = to => {
 	}
 };
 
+const refresh = () => {
+	console.log('ck token!!!', cookies.isKey('accesstoken'));
+	cookies.remove();
+};
+
 const routes = [
 	{
 		path: '/',
 		name: 'login',
 		component: Login,
 		meta: { unauhorized: true },
+		beforeCreate: refresh,
 	},
 	{
 		path: '/posts',
@@ -45,6 +51,7 @@ const routes = [
 	{
 		path: '/posts/:seq/edit',
 		name: 'postEdit',
+		props: true,
 		component: PostEdit,
 		beforeEnter: routerGuard,
 	},

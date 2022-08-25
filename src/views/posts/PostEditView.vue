@@ -25,10 +25,25 @@
 				<button class="btn btn-primary">저장</button>
 			</div>
 		</div>
+		<div class="postseq invisible">{{ seq }}</div>
 	</div>
 </template>
 
-<script setup></script>
+<script setup>
+import { onMounted, ref } from 'vue';
+
+defineProps({
+	seq: {
+		type: Number,
+		required: true,
+	},
+});
+const postseq = ref();
+onMounted(() => {
+	postseq.value = document.getElementsByClassName('postseq')[0].innerHTML;
+	console.log('edit!!!!!', postseq.value);
+});
+</script>
 
 <style scoped>
 @import '@/assets/main.css';

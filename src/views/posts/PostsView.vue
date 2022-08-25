@@ -11,6 +11,27 @@
 				></PostItem>
 			</div>
 		</div>
+		<router-link to="/posts/create">
+			<button class="btn btn-primary mt-3">새 글 쓰기</button>
+		</router-link>
+		<!-- pagination -->
+		<nav class="mt-1" aria-label="Page navigation example">
+			<ul class="pagination justify-content-center">
+				<li class="page-item">
+					<a class="page-link" href="#" aria-label="Previous">
+						<span aria-hidden="true">&laquo;</span>
+					</a>
+				</li>
+				<li class="page-item"><a class="page-link" href="#">1</a></li>
+				<li class="page-item"><a class="page-link" href="#">2</a></li>
+				<li class="page-item"><a class="page-link" href="#">3</a></li>
+				<li class="page-item">
+					<a class="page-link" href="#" aria-label="Next">
+						<span aria-hidden="true">&raquo;</span>
+					</a>
+				</li>
+			</ul>
+		</nav>
 		<hr style="visibility: hidden" />
 	</div>
 </template>
@@ -18,7 +39,7 @@
 <script setup>
 import { ref } from 'vue';
 import router from '@/router/index.js';
-import { getList, checkToken } from '@/api/posts.js';
+import { getList, checkToken, setDate } from '@/api/posts.js';
 import PostItem from '@/components/post/PostItem.vue';
 
 checkToken();
@@ -32,13 +53,6 @@ const fetchPosts = () => {
 	});
 };
 fetchPosts();
-
-// reformat date
-const setDate = str => {
-	const date = new Date(str);
-	// Date 객체를 한국 표준 날짜로 format
-	return date.toLocaleDateString('ko-Kore-KR');
-};
 
 const goDetail = postseq => {
 	console.log('goDetail:::::::::::', postseq);

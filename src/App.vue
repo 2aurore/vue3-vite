@@ -8,8 +8,8 @@ import AppAlert from '@/components/AppAlert.vue';
 
 <template>
 	<TheHeader></TheHeader>
-	<MainView></MainView>
 	<AppAlert />
+	<MainView></MainView>
 </template>
 
 <style></style>
