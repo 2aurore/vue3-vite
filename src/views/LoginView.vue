@@ -113,7 +113,7 @@
 				<!-- Button trigger modal -->
 				<button
 					type="button"
-					class="btn btn-primary joinBtn"
+					class="btn btn-primary"
 					data-bs-toggle="modal"
 					data-bs-target="#staticBackdrop"
 				>
@@ -152,9 +152,7 @@ function emailCheck() {
 // 	focused.value = true;
 // };
 function loginSubmit(login) {
-	console.log('submnit!!!!', login);
 	if (emailCheck()) {
-		console.log('submnit222!!!!', login);
 		postLogin(login);
 	} else {
 		useAlertStore().vAlert('이메일 형식을 확인해주세요.');
@@ -180,6 +178,11 @@ const security = ref({
 function onPwSecurityCheck() {
 	let pw_1 = joinFormData.value.password;
 	let pw_2 = security.value.passwordCheck;
+	if (pw_1.length < 8) {
+		security.value.pwCheckAlert = '비밀번호는 8자리 이상으로 설정해주세요';
+		security.value.pwSecurityStatus = false;
+	}
+
 	if (pw_1 == '' && pw_2 == '') {
 		security.value.pwCheckAlert = '비밀번호를 입력하세요';
 	} else {

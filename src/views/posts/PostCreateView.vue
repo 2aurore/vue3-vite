@@ -1,7 +1,7 @@
 <template>
-	<h2 class="mb-3">게시글 작성</h2>
 	<div class="card">
 		<div class="card-body">
+			<h2 class="mb-3">게시글 작성</h2>
 			<div class="mb-3">
 				<input
 					type="text"
@@ -49,4 +49,9 @@ const onSave = newPost => {
 
 <style scoped>
 @import '@/assets/main.css';
+
+/* Chrome, Firefox, Opera, Safari 10.1+ */
+input:focus::placeholder {
+	color: transparent;
+}
 </style>

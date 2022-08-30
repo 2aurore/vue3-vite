@@ -1,7 +1,7 @@
 <template>
 	<div class="card-body">
 		<div class="row">
-			<p class="post-contents col-6">{{ content }}</p>
+			<p class="post-contents col-6">{{ content }}<br /></p>
 			<p class="text-muted post-contents col" style="text-align: right">
 				{{ member }}<br />
 				{{ setDate(createdate) }}

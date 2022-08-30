@@ -13,16 +13,19 @@ export async function postLogin(data) {
 		console.log('postLogin!!!!!', data);
 		try {
 			const response = await axios.post(BASE_URL + '/auth/login', data);
-			console.log(response.data);
 			if (response.data.status == 200) {
-				const token = 'Bearer ' + response.data.data.accessToken;
+				console.log('response.data', response.data);
+				if (!response.data.data.accessToken) {
+					alret.vAlert('잠시 후 다시 이용해주세요.');
+					return;
+				}
+				const token = response.data.data.accessToken;
 
 				cookies.set('accesstoken', token);
 				console.log('!!!!!! get access token : ', cookies.get('accesstoken'));
 				alret.vSuccess('어서오세요.');
 				show.vLogin();
 				router.push('/posts');
-				// router.go();
 			}
 		} catch (error) {
 			// console.log(error.response.data['password']);

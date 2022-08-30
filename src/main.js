@@ -7,6 +7,8 @@ import cookies from '@/cookies/cookies';
 const pinia = createPinia();
 const app = createApp(App);
 
+export const eventBus = app;
+
 // must create pinia before router
 app.use(pinia);
 app.use(router, cookies).mount('#app');

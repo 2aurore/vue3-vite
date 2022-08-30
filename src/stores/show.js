@@ -1,3 +1,4 @@
+import router from '@/router/index';
 import { defineStore } from 'pinia';
 
 export const useShowStore = defineStore('show', {
@@ -9,7 +10,9 @@ export const useShowStore = defineStore('show', {
 			this.show.push({ loginFlag: false, logoutFlag: true });
 		},
 		vLogout() {
-			this.show.shift();
+			this.show.loginFlag = false;
+			this.show.logoutFlag = true;
+			router.go();
 		},
 	},
 });

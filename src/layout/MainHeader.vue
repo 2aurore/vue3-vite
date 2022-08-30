@@ -1,6 +1,9 @@
 <template>
 	<header>
-		<nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+		<nav
+			aria-label="breadcrumb"
+			class="navbar navbar-expand-sm navbar-dark bg-primary"
+		>
 			<div class="container-fluid">
 				<a class="navbar-brand" href="#">TLC</a>
 				<button
@@ -15,8 +18,8 @@
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarNav">
-					<ul class="navbar-nav me-auto">
-						<li class="nav-item">
+					<ul class="navbar-nav me-auto breadcrumb">
+						<li class="nav-item breadcrumb-item" aria-current="page">
 							<router-link class="nav-link" active-class="active" to="/posts"
 								>Posts</router-link
 							>
